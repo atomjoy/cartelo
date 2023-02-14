@@ -1,6 +1,6 @@
 # Cartelo
 
-Dostawa online dla restauracji, produkty, dodatki, koszyk z api (przykłady).
+Dostawa online dla restauracji, produkty, warianty produktów, dodatki, grupy dodatków, koszyk z api, kategorie, zamówienia, płatności payu itp. (przykłady).
 
 ## Klasa użytkownika
 
