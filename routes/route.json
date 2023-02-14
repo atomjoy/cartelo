@@ -1,0 +1,720 @@
+[
+	{ "domain": null, "method": "GET|HEAD", "uri": "/", "name": "login", "action": "Closure", "middleware": ["web"] },
+	{ "domain": null, "method": "POST", "uri": "_ignition/execute-solution", "name": "ignition.executeSolution", "action": "Spatie\\LaravelIgnition\\Http\\Controllers\\ExecuteSolutionController", "middleware": ["Spatie\\LaravelIgnition\\Http\\Middleware\\RunnableSolutionsEnabled"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "_ignition/health-check", "name": "ignition.healthCheck", "action": "Spatie\\LaravelIgnition\\Http\\Controllers\\HealthCheckController", "middleware": ["Spatie\\LaravelIgnition\\Http\\Middleware\\RunnableSolutionsEnabled"] },
+	{ "domain": null, "method": "POST", "uri": "_ignition/update-config", "name": "ignition.updateConfig", "action": "Spatie\\LaravelIgnition\\Http\\Controllers\\UpdateConfigController", "middleware": ["Spatie\\LaravelIgnition\\Http\\Middleware\\RunnableSolutionsEnabled"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "api/user", "name": null, "action": "Closure", "middleware": ["api", "App\\Http\\Middleware\\Authenticate:sanctum"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "api/v1/error/db", "name": "api.v1.db", "action": "Closure", "middleware": ["web"] },
+	{ "domain": null, "method": "POST", "uri": "api/v1/login", "name": "api.v1.login", "action": "Closure", "middleware": ["web"] },
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/addongroups",
+		"name": "cartelo.addongroups.index",
+		"action": "Cartelo\\Http\\Controllers\\AddonGroupController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\AddonGroup"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/addongroups",
+		"name": "cartelo.addongroups.store",
+		"action": "Cartelo\\Http\\Controllers\\AddonGroupController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\AddonGroup"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/addongroups/{addongroup}",
+		"name": "cartelo.addongroups.show",
+		"action": "Cartelo\\Http\\Controllers\\AddonGroupController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:view,addongroup"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/addongroups/{addongroup}",
+		"name": "cartelo.addongroups.update",
+		"action": "Cartelo\\Http\\Controllers\\AddonGroupController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,addongroup"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/addongroups/{addongroup}",
+		"name": "cartelo.addongroups.destroy",
+		"action": "Cartelo\\Http\\Controllers\\AddonGroupController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,addongroup"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/addongroups/{addongroup}/attach/addon/{addon}",
+		"name": "cartelo.",
+		"action": "Cartelo\\Http\\Controllers\\AddonGroupController@attachAddon",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/addongroups/{addongroup}/attach/variant/{variant}",
+		"name": "cartelo.",
+		"action": "Cartelo\\Http\\Controllers\\AddonGroupController@attachVariant",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/addongroups/{addongroup}/detach/addon/{addon}",
+		"name": "cartelo.",
+		"action": "Cartelo\\Http\\Controllers\\AddonGroupController@detachAddon",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/addongroups/{addongroup}/detach/variant/{variant}",
+		"name": "cartelo.",
+		"action": "Cartelo\\Http\\Controllers\\AddonGroupController@detachVariant",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/addons",
+		"name": "cartelo.addons.index",
+		"action": "Cartelo\\Http\\Controllers\\AddonController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Addon"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/addons",
+		"name": "cartelo.addons.store",
+		"action": "Cartelo\\Http\\Controllers\\AddonController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Addon"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/addons/{addon}",
+		"name": "cartelo.addons.show",
+		"action": "Cartelo\\Http\\Controllers\\AddonController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:view,addon"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/addons/{addon}",
+		"name": "cartelo.addons.update",
+		"action": "Cartelo\\Http\\Controllers\\AddonController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,addon"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/addons/{addon}",
+		"name": "cartelo.addons.destroy",
+		"action": "Cartelo\\Http\\Controllers\\AddonController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,addon"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/areas",
+		"name": "cartelo.areas.index",
+		"action": "Cartelo\\Http\\Controllers\\AreaController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Area"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/areas",
+		"name": "cartelo.areas.store",
+		"action": "Cartelo\\Http\\Controllers\\AreaController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Area"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/areas/{area}",
+		"name": "cartelo.areas.show",
+		"action": "Cartelo\\Http\\Controllers\\AreaController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:view,area"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/areas/{area}",
+		"name": "cartelo.areas.update",
+		"action": "Cartelo\\Http\\Controllers\\AreaController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,area"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/areas/{area}",
+		"name": "cartelo.areas.destroy",
+		"action": "Cartelo\\Http\\Controllers\\AreaController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,area"]
+	},
+	{ "domain": null, "method": "GET|HEAD", "uri": "cartelo/carts/create", "name": "cartelo.cart.create", "action": "Cartelo\\Http\\Controllers\\Cart\\CartController@create", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/create/{area}",
+		"name": "cartelo.cart.create.area",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@createWithArea",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/area/{area}",
+		"name": "cartelo.cart.area.update",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@updateArea",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/coupon/{coupon}",
+		"name": "cartelo.cart.coupon.update",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@updateCoupon",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/delete/coupon",
+		"name": "cartelo.cart.coupon.delete",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@deleteCoupon",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/minus/{vid}",
+		"name": "cartelo.cart.product.minus",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@minusProduct",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/minus/{vid}/{aid}",
+		"name": "cartelo.cart.addon.minus",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@minusAddon",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/plus/{vid}",
+		"name": "cartelo.cart.product.plus",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@plusProduct",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/plus/{vid}/{aid}",
+		"name": "cartelo.cart.addon.plus",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@plusAddon",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/product/{variant}/addon/{addon}/{qty}",
+		"name": "cartelo.cart.add.addon",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@add_addon",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/product/{variant}/{qty}",
+		"name": "cartelo.cart.add.product",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@addProduct",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/remove/{vid}",
+		"name": "cartelo.cart.product.remove",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@delProduct",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/remove/{vid}/{aid}",
+		"name": "cartelo.cart.addon.remove",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@delAddon",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{ "domain": null, "method": "GET|HEAD", "uri": "cartelo/carts/{cart}/show", "name": "cartelo.cart.show", "action": "Cartelo\\Http\\Controllers\\Cart\\CartController@show", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/carts/{cart}/show/{delivery_method}",
+		"name": "cartelo.cart.show.delivery",
+		"action": "Cartelo\\Http\\Controllers\\Cart\\CartController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/categories",
+		"name": "cartelo.categories.index",
+		"action": "Cartelo\\Http\\Controllers\\CategoryController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Category"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/categories",
+		"name": "cartelo.categories.store",
+		"action": "Cartelo\\Http\\Controllers\\CategoryController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Category"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/categories/{category}",
+		"name": "cartelo.categories.show",
+		"action": "Cartelo\\Http\\Controllers\\CategoryController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:view,category"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/categories/{category}",
+		"name": "cartelo.categories.update",
+		"action": "Cartelo\\Http\\Controllers\\CategoryController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,category"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/categories/{category}",
+		"name": "cartelo.categories.destroy",
+		"action": "Cartelo\\Http\\Controllers\\CategoryController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,category"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/clients",
+		"name": "cartelo.clients.index",
+		"action": "Cartelo\\Http\\Controllers\\ClientController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Client"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/clients",
+		"name": "cartelo.clients.store",
+		"action": "Cartelo\\Http\\Controllers\\ClientController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Client"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/clients/{client}",
+		"name": "cartelo.clients.show",
+		"action": "Cartelo\\Http\\Controllers\\ClientController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:view,client"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/clients/{client}",
+		"name": "cartelo.clients.update",
+		"action": "Cartelo\\Http\\Controllers\\ClientController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,client"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/clients/{client}",
+		"name": "cartelo.clients.destroy",
+		"action": "Cartelo\\Http\\Controllers\\ClientController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,client"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/coupons",
+		"name": "cartelo.coupons.index",
+		"action": "Cartelo\\Http\\Controllers\\CouponController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Coupon"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/coupons",
+		"name": "cartelo.coupons.store",
+		"action": "Cartelo\\Http\\Controllers\\CouponController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Coupon"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/coupons/{coupon}",
+		"name": "cartelo.coupons.show",
+		"action": "Cartelo\\Http\\Controllers\\CouponController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:view,coupon"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/coupons/{coupon}",
+		"name": "cartelo.coupons.update",
+		"action": "Cartelo\\Http\\Controllers\\CouponController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,coupon"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/coupons/{coupon}",
+		"name": "cartelo.coupons.destroy",
+		"action": "Cartelo\\Http\\Controllers\\CouponController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,coupon"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/days",
+		"name": "cartelo.days.index",
+		"action": "Cartelo\\Http\\Controllers\\DayController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Day"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/days",
+		"name": "cartelo.days.store",
+		"action": "Cartelo\\Http\\Controllers\\DayController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Day"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/days/{day}",
+		"name": "cartelo.days.show",
+		"action": "Cartelo\\Http\\Controllers\\DayController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:view,day"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/days/{day}",
+		"name": "cartelo.days.update",
+		"action": "Cartelo\\Http\\Controllers\\DayController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,day"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/days/{day}",
+		"name": "cartelo.days.destroy",
+		"action": "Cartelo\\Http\\Controllers\\DayController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,day"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/mobiles",
+		"name": "cartelo.mobiles.index",
+		"action": "Cartelo\\Http\\Controllers\\MobileController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Mobile"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/mobiles",
+		"name": "cartelo.mobiles.store",
+		"action": "Cartelo\\Http\\Controllers\\MobileController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Mobile"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/mobiles/{mobile}",
+		"name": "cartelo.mobiles.show",
+		"action": "Cartelo\\Http\\Controllers\\MobileController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:view,mobile"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/mobiles/{mobile}",
+		"name": "cartelo.mobiles.update",
+		"action": "Cartelo\\Http\\Controllers\\MobileController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,mobile"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/mobiles/{mobile}",
+		"name": "cartelo.mobiles.destroy",
+		"action": "Cartelo\\Http\\Controllers\\MobileController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,mobile"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/products",
+		"name": "cartelo.products.index",
+		"action": "Cartelo\\Http\\Controllers\\ProductController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Product"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/products",
+		"name": "cartelo.products.store",
+		"action": "Cartelo\\Http\\Controllers\\ProductController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Product"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/products/{product}",
+		"name": "cartelo.products.show",
+		"action": "Cartelo\\Http\\Controllers\\ProductController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:view,product"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/products/{product}",
+		"name": "cartelo.products.update",
+		"action": "Cartelo\\Http\\Controllers\\ProductController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,product"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/products/{product}",
+		"name": "cartelo.products.destroy",
+		"action": "Cartelo\\Http\\Controllers\\ProductController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,product"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/restaurants",
+		"name": "cartelo.restaurants.index",
+		"action": "Cartelo\\Http\\Controllers\\RestaurantController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Restaurant"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/restaurants",
+		"name": "cartelo.restaurants.store",
+		"action": "Cartelo\\Http\\Controllers\\RestaurantController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Restaurant"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/restaurants/{restaurant}",
+		"name": "cartelo.restaurants.show",
+		"action": "Cartelo\\Http\\Controllers\\RestaurantController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:view,restaurant"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/restaurants/{restaurant}",
+		"name": "cartelo.restaurants.update",
+		"action": "Cartelo\\Http\\Controllers\\RestaurantController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,restaurant"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/restaurants/{restaurant}",
+		"name": "cartelo.restaurants.destroy",
+		"action": "Cartelo\\Http\\Controllers\\RestaurantController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,restaurant"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/socials",
+		"name": "cartelo.socials.index",
+		"action": "Cartelo\\Http\\Controllers\\SocialController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Social"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/socials",
+		"name": "cartelo.socials.store",
+		"action": "Cartelo\\Http\\Controllers\\SocialController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Social"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/socials/{social}",
+		"name": "cartelo.socials.show",
+		"action": "Cartelo\\Http\\Controllers\\SocialController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:view,social"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/socials/{social}",
+		"name": "cartelo.socials.update",
+		"action": "Cartelo\\Http\\Controllers\\SocialController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,social"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/socials/{social}",
+		"name": "cartelo.socials.destroy",
+		"action": "Cartelo\\Http\\Controllers\\SocialController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,social"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/users",
+		"name": "cartelo.users.index",
+		"action": "Cartelo\\Http\\Controllers\\UserController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\User"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/users/{user}",
+		"name": "cartelo.users.show",
+		"action": "Cartelo\\Http\\Controllers\\UserController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:view,user"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/users/{user}",
+		"name": "cartelo.users.update",
+		"action": "Cartelo\\Http\\Controllers\\UserController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,user"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/users/{user}",
+		"name": "cartelo.users.destroy",
+		"action": "Cartelo\\Http\\Controllers\\UserController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,user"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/variants",
+		"name": "cartelo.variants.index",
+		"action": "Cartelo\\Http\\Controllers\\VariantController@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:viewAny,Cartelo\\Models\\Variant"]
+	},
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "cartelo/variants",
+		"name": "cartelo.variants.store",
+		"action": "Cartelo\\Http\\Controllers\\VariantController@store",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:create,Cartelo\\Models\\Variant"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "cartelo/variants/{variant}",
+		"name": "cartelo.variants.show",
+		"action": "Cartelo\\Http\\Controllers\\VariantController@show",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "Illuminate\\Auth\\Middleware\\Authorize:view,variant"]
+	},
+	{
+		"domain": null,
+		"method": "PUT|PATCH",
+		"uri": "cartelo/variants/{variant}",
+		"name": "cartelo.variants.update",
+		"action": "Cartelo\\Http\\Controllers\\VariantController@update",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:update,variant"]
+	},
+	{
+		"domain": null,
+		"method": "DELETE",
+		"uri": "cartelo/variants/{variant}",
+		"name": "cartelo.variants.destroy",
+		"action": "Cartelo\\Http\\Controllers\\VariantController@destroy",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker", "Illuminate\\Auth\\Middleware\\Authorize:delete,variant"]
+	},
+	{ "domain": null, "method": "GET|HEAD", "uri": "cartelo/{fallbackPlaceholder}", "name": "cartelo.", "action": "Closure", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "sanctum/csrf-cookie", "name": "sanctum.csrf-cookie", "action": "Laravel\\Sanctum\\Http\\Controllers\\CsrfCookieController@show", "middleware": ["web"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/api/activate/{id}/{code}", "name": "web.api.activate", "action": "Webi\\Http\\Controllers\\WebiActivate@index", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{
+		"domain": null,
+		"method": "POST",
+		"uri": "web/api/change-password",
+		"name": "web.api.change-password",
+		"action": "Webi\\Http\\Controllers\\WebiPassChange@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker|user"]
+	},
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/api/csrf", "name": "web.api.csrf", "action": "Webi\\Http\\Controllers\\WebiCsrf@index", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/api/locale/{locale}", "name": "web.api.locale", "action": "Webi\\Http\\Controllers\\WebiLocale@index", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/api/logged", "name": "web.api.logged", "action": "Webi\\Http\\Controllers\\WebiLogged@index", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{ "domain": null, "method": "POST", "uri": "web/api/login", "name": "web.api.login", "action": "Webi\\Http\\Controllers\\WebiLogin@index", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "web/api/logout",
+		"name": "web.api.logout",
+		"action": "Webi\\Http\\Controllers\\WebiLogout@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker|user"]
+	},
+	{ "domain": null, "method": "POST", "uri": "web/api/register", "name": "web.api.register", "action": "Webi\\Http\\Controllers\\WebiRegister@index", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{ "domain": null, "method": "POST", "uri": "web/api/reset", "name": "web.api.reset", "action": "Webi\\Http\\Controllers\\WebiPassReset@index", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "web/api/test/admin",
+		"name": "web.api.test.admin",
+		"action": "Webi\\Http\\Controllers\\WebiUserDetails@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "web/api/test/user",
+		"name": "web.api.test.user",
+		"action": "Webi\\Http\\Controllers\\WebiUserDetails@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker|user"]
+	},
+	{
+		"domain": null,
+		"method": "GET|HEAD",
+		"uri": "web/api/test/worker",
+		"name": "web.api.test.worker",
+		"action": "Webi\\Http\\Controllers\\WebiUserDetails@index",
+		"middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse", "App\\Http\\Middleware\\Authenticate", "Webi\\Http\\Middleware\\WebiAuthRoles:admin|worker"]
+	},
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/api/{fallbackPlaceholder}", "name": "web.api.", "action": "Closure", "middleware": ["web", "Webi\\Http\\Middleware\\WebiChangeLocale", "Webi\\Http\\Middleware\\WebiJsonResponse"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/cancel/payu/{order}", "name": "web.payu.cancel", "action": "Payu\\Http\\Controllers\\PayuPaymentController@cancel", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/confirm/payu/{order}", "name": "web.payu.confirm", "action": "Payu\\Http\\Controllers\\PayuPaymentController@confirm", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "POST", "uri": "web/payment/notify/payu", "name": "web.payu.notify", "action": "Payu\\Http\\Controllers\\PayuPaymentController@notify", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/payments/payu/{lang}", "name": "web.payu.payments", "action": "Payu\\Http\\Controllers\\PayuPaymentController@payments", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/refresh/payu/{order}", "name": "web.payu.refresh", "action": "Payu\\Http\\Controllers\\PayuPaymentController@refresh", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/refund/payu/{order}", "name": "web.payu.refund", "action": "Payu\\Http\\Controllers\\PayuPaymentController@refund", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/refunds/payu/{order}", "name": "web.payu.refunds", "action": "Payu\\Http\\Controllers\\PayuPaymentController@refunds", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/retrive/payu/{order}", "name": "web.payu.retrive", "action": "Payu\\Http\\Controllers\\PayuPaymentController@retrive", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/success/payu/{order}", "name": "web.payu.success", "action": "Payu\\Http\\Controllers\\PayuPaymentPageController@success", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/transaction/payu/{order}", "name": "web.payu.transaction", "action": "Payu\\Http\\Controllers\\PayuPaymentController@transaction", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] },
+	{ "domain": null, "method": "GET|HEAD", "uri": "web/payment/url/payu/{order}", "name": "web.payu.url", "action": "Payu\\Http\\Controllers\\PayuPaymentController@pay", "middleware": ["web", "Payu\\Http\\Middleware\\PayuMiddleware"] }
+]
