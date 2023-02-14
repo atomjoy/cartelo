@@ -95,7 +95,7 @@ class Order extends Model implements PayuOrderInterface
 
 	function orderPhone()
 	{
-		return $this->mobile;
+		return $this->phone;
 	}
 
 	function orderEmail()
