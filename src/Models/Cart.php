@@ -217,7 +217,19 @@ class Cart extends Model
 	function drawCart()
 	{
 		return [
-			'cart' => $this,
+			'cart' => $this->with([
+				'variants' => function ($query) {
+					$query->with([
+						'addons' => function ($q) {
+							$q->with('addon');
+						},
+						'variant' => function ($q) {
+							$q->with('product');
+						}
+					]);
+				},
+				'area', 'coupon'
+			])->get()->first()->toArray(),
 			'packaging_cost' => number_format($this->packagingCost(), 2, '.', '') ?? 0.00,
 			'products_cost' => number_format($this->productCost(), 2, '.', '') ?? 0.00,
 			'delivery_cost' => number_format($this->deliveryCost(), 2, '.', '') ?? 0.00,
