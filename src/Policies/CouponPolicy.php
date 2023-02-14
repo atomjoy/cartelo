@@ -18,12 +18,12 @@ class CouponPolicy
 		}
 	}
 
-	public function viewAny(?User $user)
+	public function viewAny(User $user)
 	{
 		return false;
 	}
 
-	public function view(?User $user, Coupon $coupon)
+	public function view(User $user, Coupon $coupon)
 	{
 		return false;
 	}

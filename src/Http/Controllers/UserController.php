@@ -40,12 +40,12 @@ class UserController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = User::where(
-			DB::raw("CONCAT_WS(' ','name', 'email', 'username', 'role', 'mobile', 'website', 'location')"),
+			DB::raw("CONCAT_WS(' ',name,email,username,role,mobile,website,location)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(UserCollection::collection($a));
+		return response()->success((new UserCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -85,7 +85,7 @@ class UserController extends Controller
 	 */
 	public function show(User $user)
 	{
-		return response()->success(new UserResource($user));
+		return response()->success((new UserResource($user))->response()->getData(true));
 	}
 
 	/**

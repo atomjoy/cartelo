@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class AddonCollection extends ResourceCollection
 {
+	public static $wrap = null;
+
 	/**
 	 * Transform the resource collection into an array.
 	 *
@@ -14,7 +16,11 @@ class AddonCollection extends ResourceCollection
 	 */
 	public function toArray($request)
 	{
-		return AddonResource::collection($this->collection);
+		return [
+			'addons' => AddonResource::collection($this->collection),
+			'meta' => ['count' => $this->collection->count()],
+			// 'links' => ['self' => 'link-value'],
+		];
 
 		// return parent::toArray($request);
 	}

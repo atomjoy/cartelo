@@ -39,12 +39,12 @@ class CouponController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = Coupon::where(
-			DB::raw("CONCAT_WS(' ','code', 'description', type, discount)"),
+			DB::raw("CONCAT_WS(' ',code,description,type,discount)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(CouponCollection::collection($a));
+		return response()->success((new CouponCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -84,7 +84,7 @@ class CouponController extends Controller
 	 */
 	public function show(Coupon $coupon)
 	{
-		return response()->success(new CouponResource($coupon));
+		return response()->success((new CouponResource($coupon))->response()->getData(true));
 	}
 
 	/**

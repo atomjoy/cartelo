@@ -26,7 +26,7 @@ class AddonGroupPolicy
 	 * @param  \Cartelo\Models\User  $user
 	 * @return \Illuminate\Auth\Access\Response|bool
 	 */
-	public function viewAny(User $user)
+	public function viewAny(?User $user)
 	{
 		return true;
 	}
@@ -38,7 +38,7 @@ class AddonGroupPolicy
 	 * @param  \Cartelo\Models\AddonGroup  $addongroup
 	 * @return \Illuminate\Auth\Access\Response|bool
 	 */
-	public function view(User $user, AddonGroup $addongroup)
+	public function view(?User $user, AddonGroup $addongroup)
 	{
 		return true;
 	}

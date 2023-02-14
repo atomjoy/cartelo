@@ -40,12 +40,12 @@ class CategoryController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = Category::where(
-			DB::raw("CONCAT_WS(' ','name', 'slug')"),
+			DB::raw("CONCAT_WS(' ',name,slug)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(CategoryCollection::collection($a));
+		return response()->success((new CategoryCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -84,7 +84,7 @@ class CategoryController extends Controller
 	 */
 	public function show(Category $category)
 	{
-		return response()->success(new CategoryResource($category));
+		return response()->success((new CategoryResource($category))->response()->getData(true));
 	}
 
 	/**

@@ -40,9 +40,20 @@ class ProductController extends Controller
 	{
 		$search = "" . app()->request->input('search');
 
+		// $q = Product::query();
+		// $q->with('variants');
+
+		// if (!empty($search)) {
+		// 	// $q->where('slug', 'LIKE', "%" . $search . "%");
+		// 	$q->whereRaw("CONCAT_WS(' ',name,slug,about) REGEXP '" . str_replace(" ", "|", trim($search)) . "'");
+		// 	//$q->where('slug', 'REGEXP', str_replace(" ", "|", $search));
+		// 	//$q->where('about', 'REGEXP', str_replace(" ", "|", $search));
+		// }
+		// $a = $q->orderBy("id", 'desc')->paginate($this->perpage())->withQueryString();
+
 		$a = Product::with('variants')->where(
-			DB::raw("CONCAT_WS(' ','name','slug','about')"),
-			'regexp',
+			DB::raw("CONCAT_WS(' ',name,slug,about)"),
+			'REGEXP',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->paginate($this->perpage())->withQueryString();
 
@@ -101,7 +112,7 @@ class ProductController extends Controller
 	 */
 	public function show(Product $product)
 	{
-		return response()->success(new ProductResource($product));
+		return response()->success((new ProductResource($product))->response()->getData(true));
 	}
 
 	/**

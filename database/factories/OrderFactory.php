@@ -23,7 +23,7 @@ class OrderFactory extends Factory
 			'city' => $this->faker->city(),
 			'address' => $this->faker->streetAddress(),
 			'email' => uniqid() . '@example.com',
-			'mobile' => $this->faker->numerify('+48#########'),
+			'phone' => $this->faker->numerify('+48#########'),
 			'comment' => $this->faker->sentence(),
 			'ip' => '127.0.0.1',
 			'floor' => rand(0, 6),

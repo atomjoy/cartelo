@@ -7,6 +7,7 @@ use Cartelo\Models\Variant;
 use Cartelo\Http\Requests\StoreVariantRequest;
 use Cartelo\Http\Requests\UpdateVariantRequest;
 use Cartelo\Http\Resources\VariantCollection;
+use Cartelo\Http\Resources\VariantResource;
 use Illuminate\Support\Facades\DB;
 
 class VariantController extends Controller
@@ -37,16 +38,15 @@ class VariantController extends Controller
 	{
 		$search = "" . app()->request->input('search');
 
-		$a = Variant::where(
-			DB::raw("CONCAT_WS(' ','size', 'price', 'price_sale')"),
+		$a = Variant::with(['product'])->where(
+			DB::raw("CONCAT_WS(' ',size,price,price_sale)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')
 			->simplePaginate($this->perpage())
-			->withQueryString()
-			->with(['groups', 'product']);
+			->withQueryString();
 
-		return response()->success(VariantCollection::collection($a));
+		return response()->success((new VariantCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -85,7 +85,7 @@ class VariantController extends Controller
 	 */
 	public function show(Variant $variant)
 	{
-		return response()->success(new VariantResource($variant));
+		return response()->success((new VariantResource($variant))->response()->getData(true));
 	}
 
 	/**

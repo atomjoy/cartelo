@@ -15,7 +15,7 @@ class MobileCollection extends ResourceCollection
 	public function toArray($request)
 	{
 		return [
-			'data' => MobileResource::collection($this->collection),
+			'mobiles' => MobileResource::collection($this->collection),
 			'meta' => ['count' => $this->collection->count()],
 		];
 

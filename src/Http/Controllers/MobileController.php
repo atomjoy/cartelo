@@ -39,12 +39,12 @@ class MobileController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = Mobile::where(
-			DB::raw("CONCAT_WS(' ','name', 'number')"),
+			DB::raw("CONCAT_WS(' ',name,number)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(MobileCollection::collection($a));
+		return response()->success((new MobileCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -83,7 +83,7 @@ class MobileController extends Controller
 	 */
 	public function show(Mobile $mobile)
 	{
-		return response()->success(new MobileResource($mobile));
+		return response()->success((new MobileResource($mobile))->response()->getData(true));
 	}
 
 	/**

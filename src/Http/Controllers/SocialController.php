@@ -39,12 +39,12 @@ class SocialController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = Social::where(
-			DB::raw("CONCAT_WS(' ','name','link')"),
+			DB::raw("CONCAT_WS(' ',name,link)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(SocialCollection::collection($a));
+		return response()->success((new SocialCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -83,7 +83,7 @@ class SocialController extends Controller
 	 */
 	public function show(Social $social)
 	{
-		return response()->success(new SocialResource($social));
+		return response()->success((new SocialResource($social))->response()->getData(true));
 	}
 
 	/**

@@ -9,6 +9,7 @@ use Cartelo\Models\Variant;
 use Cartelo\Http\Requests\StoreAddonGroupRequest;
 use Cartelo\Http\Requests\UpdateAddonGroupRequest;
 use Cartelo\Http\Resources\AddonGroupCollection;
+use Cartelo\Http\Resources\AddonGroupResource;
 use Illuminate\Support\Facades\DB;
 
 class AddonGroupController extends Controller
@@ -40,12 +41,12 @@ class AddonGroupController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = AddonGroup::where(
-			DB::raw("CONCAT_WS(' ','name','size','about')"),
+			DB::raw("CONCAT_WS(' ',name,size,about)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(AddonGroupCollection::collection($a));
+		return response()->success((new AddonGroupCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -84,7 +85,7 @@ class AddonGroupController extends Controller
 	 */
 	public function show(AddonGroup $addongroup)
 	{
-		return response()->success(new AddonGroupResource($addongroup));
+		return response()->success((new AddonGroupResource($addongroup))->response()->getData(true));
 	}
 
 	/**

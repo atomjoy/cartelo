@@ -7,6 +7,7 @@ use Cartelo\Models\Addon;
 use Cartelo\Http\Requests\StoreAddonRequest;
 use Cartelo\Http\Requests\UpdateAddonRequest;
 use Cartelo\Http\Resources\AddonCollection;
+use Cartelo\Http\Resources\AddonResource;
 use Illuminate\Support\Facades\DB;
 
 class AddonController extends Controller
@@ -38,12 +39,12 @@ class AddonController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = Addon::where(
-			DB::raw("CONCAT_WS(' ','name','price')"),
+			DB::raw("CONCAT_WS(' ',name,price)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(AddonCollection::collection($a));
+		return response()->success((new AddonCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -82,7 +83,7 @@ class AddonController extends Controller
 	 */
 	public function show(Addon $addon)
 	{
-		return response()->success(new AddonResource($addon));
+		return response()->success((new AddonResource($addon))->response()->getData(true));
 	}
 
 	/**

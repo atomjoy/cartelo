@@ -15,7 +15,7 @@ class CouponCollection extends ResourceCollection
 	public function toArray($request)
 	{
 		return [
-			'data' => CouponResource::collection($this->collection),
+			'coupons' => CouponResource::collection($this->collection),
 			'meta' => ['count' => $this->collection->count()],
 		];
 

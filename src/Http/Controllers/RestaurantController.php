@@ -39,12 +39,12 @@ class RestaurantController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = Restaurant::where(
-			DB::raw("CONCAT_WS(' ','name', 'city', 'address')"),
+			DB::raw("CONCAT_WS(' ',name,city,address)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(RestaurantCollection::collection($a));
+		return response()->success((new RestaurantCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -82,7 +82,7 @@ class RestaurantController extends Controller
 	 */
 	public function show(Restaurant $restaurant)
 	{
-		return response()->success(new RestaurantResource($restaurant));
+		return response()->success((new RestaurantResource($restaurant))->response()->getData(true));
 	}
 
 	/**

@@ -6,6 +6,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class AddonResource extends JsonResource
 {
+	// Change 'data to 'addon' in json response
+	// public static $wrap = 'addon';
+
 	/**
 	 * Transform the resource into an array.
 	 *

@@ -61,7 +61,5 @@ class CarteloAuthServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->registerPolicies();
-
-		//
 	}
 }

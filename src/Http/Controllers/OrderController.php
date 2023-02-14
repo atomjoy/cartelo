@@ -39,12 +39,12 @@ class OrderController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = Order::where(
-			DB::raw("CONCAT_WS(' ','cost', 'status')"),
+			DB::raw("CONCAT_WS(' ',cost,status)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(OrderCollection::collection($a));
+		return response()->success((new OrderCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -79,7 +79,7 @@ class OrderController extends Controller
 	 */
 	public function show(Order $order)
 	{
-		return response()->success(new OrderResource($order));
+		return response()->success((new OrderResource($order))->response()->getData(true));
 	}
 
 	/**

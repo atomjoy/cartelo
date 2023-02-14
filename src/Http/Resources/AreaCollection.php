@@ -15,7 +15,7 @@ class AreaCollection extends ResourceCollection
 	public function toArray($request)
 	{
 		return [
-			'data' => AreaResource::collection($this->collection),
+			'areas' => AreaResource::collection($this->collection),
 			'meta' => ['count' => $this->collection->count()],
 			// 'links' => ['self' => 'link-value'],
 		];

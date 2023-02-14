@@ -16,8 +16,8 @@ class ProductCollection extends ResourceCollection
 	{
 		return [
 			//'data' => $this->collection,
-			'data' => ProductResource::collection($this->collection),
-			'paginate' => $this->resource->linkCollection(),
+			'products' => ProductResource::collection($this->collection),
+			// 'paginate' => $this->resource->linkCollection(),
 			// 'paginate' => [
 			// 	'prev_page' => $this->resource->previousPageUrl(),
 			// 	'current_page' => $this->resource->url($this->resource->currentPage()),

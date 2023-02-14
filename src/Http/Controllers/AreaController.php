@@ -39,12 +39,12 @@ class AreaController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = Area::where(
-			DB::raw("CONCAT_WS(' ','name', 'about')"),
+			DB::raw("CONCAT_WS(' ',name,about)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(AreaCollection::collection($a));
+		return response()->success((new AreaCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -83,7 +83,7 @@ class AreaController extends Controller
 	 */
 	public function show(Area $area)
 	{
-		return response()->success(new AreaResource($area));
+		return response()->success((new AreaResource($area))->response()->getData(true));
 	}
 
 	/**

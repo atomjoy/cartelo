@@ -39,12 +39,12 @@ class DayController extends Controller
 		$search = "" . app()->request->input('search');
 
 		$a = Day::where(
-			DB::raw("CONCAT_WS(' ','number', 'closed')"),
+			DB::raw("CONCAT_WS(' ',number,closed)"),
 			'regexp',
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success(DayCollection::collection($a));
+		return response()->success((new DayCollection($a))->response()->getData(true));
 	}
 
 	/**
@@ -83,7 +83,7 @@ class DayController extends Controller
 	 */
 	public function show(Day $day)
 	{
-		return response()->success(new DayResource($day));
+		return response()->success((new DayResource($day))->response()->getData(true));
 	}
 
 	/**

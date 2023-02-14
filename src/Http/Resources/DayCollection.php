@@ -15,7 +15,7 @@ class DayCollection extends ResourceCollection
 	public function toArray($request)
 	{
 		return [
-			'data' => DayResource::collection($this->collection),
+			'days' => DayResource::collection($this->collection),
 			'meta' => ['count' => $this->collection->count()],
 		];
 

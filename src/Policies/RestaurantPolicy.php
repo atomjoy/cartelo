@@ -26,9 +26,9 @@ class RestaurantPolicy
 	 * @param  \Cartelo\Models\User  $user
 	 * @return \Illuminate\Auth\Access\Response|bool
 	 */
-	public function viewAny(User $user)
+	public function viewAny(?User $user)
 	{
-		return false;
+		return true;
 	}
 
 	/**
@@ -38,9 +38,9 @@ class RestaurantPolicy
 	 * @param  \Cartelo\Models\Restaurant  $restaurant
 	 * @return \Illuminate\Auth\Access\Response|bool
 	 */
-	public function view(User $user, Restaurant $restaurant)
+	public function view(?User $user, Restaurant $restaurant)
 	{
-		return false;
+		return true;
 	}
 
 	/**

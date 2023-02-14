@@ -15,7 +15,7 @@ class SocialCollection extends ResourceCollection
 	public function toArray($request)
 	{
 		return [
-			'data' => SocialResource::collection($this->collection),
+			'socials' => SocialResource::collection($this->collection),
 			'meta' => ['count' => $this->collection->count()],
 		];
 
