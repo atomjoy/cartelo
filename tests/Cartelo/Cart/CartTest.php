@@ -125,7 +125,7 @@ class CartTest extends TestCase
 		$this->assertTrue($cart->delivery_method == 'home');
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 0);
 
 		// Add products
@@ -139,46 +139,46 @@ class CartTest extends TestCase
 		$cart->addAddon(2, 3, 2);
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 75.50);
 
 		$cart->addDeliveryArea($area);
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 85.49);
 
 		$cart->delivery_method = 'pickup';
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 75.50);
 
 		$cart->delivery_method = 'restaurant';
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 70);
 
 		$cart->addDeliveryArea($area2);
 		$cart->delivery_method = 'home';
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 75.50);
 
 		// Copupon
 		$cart->addCoupon($coupon->code);
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 72.01);
 		$this->assertTrue($res['cashback_reward'] == 2.00);
 
 		$cart->delProduct($v2->id);
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 56.51);
 		$this->assertTrue($res['cashback_reward'] == 1.50);
 
@@ -186,7 +186,7 @@ class CartTest extends TestCase
 		$cart->addCoupon($coupon2->code);
 
 		$res = $cart->drawCart();
-		echo "\n Cost coupon " . $res['total_cost'];
+		//echo "\n Cost coupon " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 43.35);
 		$this->assertTrue($res['cashback_reward'] == 1.50);
 		$this->assertTrue($res['discount_cost'] == 16.65);
@@ -195,7 +195,7 @@ class CartTest extends TestCase
 		$cart->delCoupon();
 
 		$res = $cart->drawCart();
-		echo "\n Cost coupon " . $res['total_cost'];
+		//echo "\n Cost coupon " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 60);
 		$this->assertTrue($res['cashback_reward'] == 1.50);
 		$this->assertTrue($res['discount_cost'] == 0);
@@ -205,7 +205,7 @@ class CartTest extends TestCase
 		$cart_variant_addon = $cart->addAddon($cart_variant->id, 3, 2);
 
 		$res = $cart->drawCart();
-		echo "\n Cost sale " . $res['total_cost'];
+		//echo "\n Cost sale " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 79.55);
 		$this->assertTrue($res['cashback_reward'] == 2.00);
 		$this->assertTrue($res['discount_cost'] == 0);
@@ -217,7 +217,7 @@ class CartTest extends TestCase
 		$cart->plusAddon($cart_variant->id, $cart_variant_addon->id);
 
 		$res = $cart->drawCart();
-		echo "\n Cost sale " . $res['total_cost'];
+		//echo "\n Cost sale " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 80.55);
 		$this->assertTrue($res['cashback_reward'] == 2.00);
 		$this->assertTrue($res['discount_cost'] == 0);
@@ -226,7 +226,7 @@ class CartTest extends TestCase
 		$cart->minusAddon($cart_variant->id, $cart_variant_addon->id);
 
 		$res = $cart->drawCart();
-		echo "\n Cost sale " . $res['total_cost'];
+		//echo "\n Cost sale " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 79.55);
 		$this->assertTrue($res['cashback_reward'] == 2.00);
 		$this->assertTrue($res['discount_cost'] == 0);
@@ -235,7 +235,7 @@ class CartTest extends TestCase
 		$cart->plusProduct($cart_variant->id);
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 99.10);
 		$this->assertTrue($res['cashback_reward'] == 2.50);
 		$this->assertTrue($res['discount_cost'] == 0);
@@ -244,7 +244,7 @@ class CartTest extends TestCase
 		$cart->minusProduct($cart_variant->id);
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 79.55);
 		$this->assertTrue($res['cashback_reward'] == 2.00);
 		$this->assertTrue($res['discount_cost'] == 0);
@@ -253,7 +253,7 @@ class CartTest extends TestCase
 		$cart->delAddon($cart_variant->id, $cart_variant_addon->id);
 
 		$res = $cart->drawCart();
-		echo "\n Cost sale " . $res['total_cost'];
+		//echo "\n Cost sale " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 77.55);
 		$this->assertTrue($res['cashback_reward'] == 2.00);
 		$this->assertTrue($res['discount_cost'] == 0);
@@ -262,7 +262,7 @@ class CartTest extends TestCase
 		$cart->delProduct($cart_variant->id);
 
 		$res = $cart->drawCart();
-		echo "\n Cost " . $res['total_cost'];
+		//echo "\n Cost " . $res['total_cost'];
 		$this->assertTrue($res['total_cost'] == 60);
 		$this->assertTrue($res['cashback_reward'] == 1.50);
 		$this->assertTrue($res['discount_cost'] == 0);

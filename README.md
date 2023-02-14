@@ -7,32 +7,34 @@ Dostawa online dla restauracji, produkty, warianty produktów, dodatki, grupy do
 app/Models/User.php
 
 ```php
+<?php
+
 namespace App\Models;
 
-use Webi\Models\WebiUser;
+use Cartelo\Models\User as CarteloUser;
 
-class User extends WebiUser
+class User extends CarteloUser
 {
- function __construct(array $attributes = [])
- {
-  parent::__construct($attributes);
+  function __construct(array $attributes = [])
+  {
+    parent::__construct($attributes);
 
-  $this->mergeFillable([
-   // 'mobile', 'website'
-  ]);
+    $this->mergeFillable([
+      // 'mobile', 'website'
+    ]);
 
-  $this->mergeCasts([
-   // 'status' => StatusEnum::class,
-   // 'email_verified_at' => 'datetime:Y-m-d H:i:s',
-  ]);
+    $this->mergeCasts([
+      // 'status' => StatusEnum::class,
+      // 'email_verified_at' => 'datetime:Y-m-d H:i:s',
+    ]);
 
-  // $this->hidden[] = 'secret_hash';
- }
+    // $this->hidden[] = 'secret_hash';
+  }
 
- protected $dispatchesEvents = [
-  // 'saved' => UserSaved::class,
-  // 'deleted' => UserDeleted::class,
- ];
+  protected $dispatchesEvents = [
+    // 'saved' => UserSaved::class,
+    // 'deleted' => UserDeleted::class,
+  ];
 }
 ```
 
@@ -118,10 +120,14 @@ php artisan test --stop-on-failure --testsuite=CarteloRoute
 php artisan test --stop-on-failure --testsuite=CarteloCart
 ```
 
-## Errors
+## Błędy
 
 ```sh
 sudo mkdir -p storage/framework/cache/payu
 sudo chown -R www-data:www-data storage/framework/cache/payu
 sudo chmod -R 770 storage/framework/cache/payu
 ```
+
+## Route api
+
+routes/web.php

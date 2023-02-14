@@ -7,7 +7,7 @@ use Cartelo\Models\Order;
 use Cartelo\Models\Coupon;
 use Webi\Models\WebiUser;
 
-class CarteloUser extends WebiUser
+class User extends WebiUser
 {
 	function orders()
 	{
