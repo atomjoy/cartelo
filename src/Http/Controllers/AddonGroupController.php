@@ -46,7 +46,7 @@ class AddonGroupController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new AddonGroupCollection($a))->response()->getData(true));
+		return new AddonGroupCollection($a);
 	}
 
 	/**
@@ -85,7 +85,7 @@ class AddonGroupController extends Controller
 	 */
 	public function show(AddonGroup $addongroup)
 	{
-		return response()->success((new AddonGroupResource($addongroup))->response()->getData(true));
+		return new AddonGroupResource($addongroup);
 	}
 
 	/**

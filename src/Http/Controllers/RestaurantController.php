@@ -44,7 +44,7 @@ class RestaurantController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new RestaurantCollection($a))->response()->getData(true));
+		return new RestaurantCollection($a);
 	}
 
 	/**
@@ -82,7 +82,7 @@ class RestaurantController extends Controller
 	 */
 	public function show(Restaurant $restaurant)
 	{
-		return response()->success((new RestaurantResource($restaurant))->response()->getData(true));
+		return new RestaurantResource($restaurant);
 	}
 
 	/**

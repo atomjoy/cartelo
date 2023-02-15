@@ -14,7 +14,7 @@ class AddonGroupCollection extends ResourceCollection
 	 */
 	public function toArray($request)
 	{
-		return AddonGroupResource::collection($this->collection);
+		return ['addongroups' => AddonGroupResource::collection($this->collection)];
 
 		// return parent::toArray($request);
 	}

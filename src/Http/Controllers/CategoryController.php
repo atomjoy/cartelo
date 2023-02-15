@@ -45,7 +45,7 @@ class CategoryController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new CategoryCollection($a))->response()->getData(true));
+		return new CategoryCollection($a);
 	}
 
 	/**
@@ -84,7 +84,7 @@ class CategoryController extends Controller
 	 */
 	public function show(Category $category)
 	{
-		return response()->success((new CategoryResource($category))->response()->getData(true));
+		return new CategoryResource($category);
 	}
 
 	/**

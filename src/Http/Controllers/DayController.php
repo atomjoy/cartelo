@@ -44,7 +44,7 @@ class DayController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new DayCollection($a))->response()->getData(true));
+		return new DayCollection($a);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class DayController extends Controller
 	 */
 	public function show(Day $day)
 	{
-		return response()->success((new DayResource($day))->response()->getData(true));
+		return new DayResource($day);
 	}
 
 	/**

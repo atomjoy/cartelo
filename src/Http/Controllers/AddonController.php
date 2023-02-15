@@ -44,7 +44,7 @@ class AddonController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new AddonCollection($a))->response()->getData(true));
+		return  new AddonCollection($a);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class AddonController extends Controller
 	 */
 	public function show(Addon $addon)
 	{
-		return response()->success((new AddonResource($addon))->response()->getData(true));
+		return new AddonResource($addon);
 	}
 
 	/**

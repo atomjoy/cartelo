@@ -48,5 +48,6 @@
 	"The social has been deleted": "The social has been deleted",
 	"The user has been created": "The user has been created",
 	"The user has been updated": "The user has been updated",
-	"The user has been deleted": "The user has been deleted"
+	"The user has been deleted": "The user has been deleted",
+	"Error key in db": "Error key in db"
 }

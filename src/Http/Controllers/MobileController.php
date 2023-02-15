@@ -44,7 +44,7 @@ class MobileController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new MobileCollection($a))->response()->getData(true));
+		return new MobileCollection($a);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class MobileController extends Controller
 	 */
 	public function show(Mobile $mobile)
 	{
-		return response()->success((new MobileResource($mobile))->response()->getData(true));
+		return new MobileResource($mobile);
 	}
 
 	/**

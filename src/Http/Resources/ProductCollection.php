@@ -15,8 +15,11 @@ class ProductCollection extends ResourceCollection
 	public function toArray($request)
 	{
 		return [
-			//'data' => $this->collection,
 			'products' => ProductResource::collection($this->collection),
+			'meta' => [
+				'count' => $this->collection->count(),
+			],
+			//'data' => $this->collection,
 			// 'paginate' => $this->resource->linkCollection(),
 			// 'paginate' => [
 			// 	'prev_page' => $this->resource->previousPageUrl(),
@@ -28,9 +31,7 @@ class ProductCollection extends ResourceCollection
 			// 	'from' => (int) $this->resource->firstItem(),
 			// 	'to' => (int) $this->resource->lastItem(),
 			// ],
-			'meta' => [
-				'count' => $this->collection->count(),
-			]
+			// 'data' => $this->resource->getData(true)
 		];
 
 		// return parent::toArray($request);

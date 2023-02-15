@@ -14,6 +14,8 @@ class AreaResource extends JsonResource
 	 */
 	public function toArray($request)
 	{
-		return parent::toArray($request);
+		$arr = parent::toArray($request);
+		$arr['restaurant'] =  $this->restaurant;
+		return $arr;
 	}
 }

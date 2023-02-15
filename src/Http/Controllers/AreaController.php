@@ -44,7 +44,7 @@ class AreaController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new AreaCollection($a))->response()->getData(true));
+		return new AreaCollection($a);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class AreaController extends Controller
 	 */
 	public function show(Area $area)
 	{
-		return response()->success((new AreaResource($area))->response()->getData(true));
+		return new AreaResource($area);
 	}
 
 	/**

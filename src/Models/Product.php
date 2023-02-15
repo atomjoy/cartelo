@@ -27,6 +27,11 @@ class Product extends Model
 		return $this->belongsToMany(Category::class)->orderBy('sorting', 'desc')->withTimestamps();
 	}
 
+	public function translates()
+	{
+		return $this->hasMany(Translate::class);
+	}
+
 	public function variants()
 	{
 		return $this->hasMany(Variant::class);

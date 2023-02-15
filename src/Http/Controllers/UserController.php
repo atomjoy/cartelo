@@ -45,7 +45,7 @@ class UserController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new UserCollection($a))->response()->getData(true));
+		return new UserCollection($a);
 	}
 
 	/**
@@ -85,7 +85,7 @@ class UserController extends Controller
 	 */
 	public function show(User $user)
 	{
-		return response()->success((new UserResource($user))->response()->getData(true));
+		return new UserResource($user);
 	}
 
 	/**

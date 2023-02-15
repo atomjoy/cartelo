@@ -19,7 +19,6 @@ class AddonCollection extends ResourceCollection
 		return [
 			'addons' => AddonResource::collection($this->collection),
 			'meta' => ['count' => $this->collection->count()],
-			// 'links' => ['self' => 'link-value'],
 		];
 
 		// return parent::toArray($request);

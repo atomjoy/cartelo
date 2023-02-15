@@ -46,7 +46,7 @@ class VariantController extends Controller
 			->simplePaginate($this->perpage())
 			->withQueryString();
 
-		return response()->success((new VariantCollection($a))->response()->getData(true));
+		return new VariantCollection($a);
 	}
 
 	/**
@@ -85,7 +85,7 @@ class VariantController extends Controller
 	 */
 	public function show(Variant $variant)
 	{
-		return response()->success((new VariantResource($variant))->response()->getData(true));
+		return new VariantResource($variant);
 	}
 
 	/**

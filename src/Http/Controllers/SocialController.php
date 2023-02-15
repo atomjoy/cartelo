@@ -44,7 +44,7 @@ class SocialController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new SocialCollection($a))->response()->getData(true));
+		return new SocialCollection($a);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class SocialController extends Controller
 	 */
 	public function show(Social $social)
 	{
-		return response()->success((new SocialResource($social))->response()->getData(true));
+		return new SocialResource($social);
 	}
 
 	/**

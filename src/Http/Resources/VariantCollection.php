@@ -14,7 +14,7 @@ class VariantCollection extends ResourceCollection
 	 */
 	public function toArray($request)
 	{
-		return VariantResource::collection($this->collection);
+		return ['variants' => VariantResource::collection($this->collection)];
 
 		// return parent::toArray($request);
 	}

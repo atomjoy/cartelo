@@ -44,7 +44,7 @@ class OrderController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new OrderCollection($a))->response()->getData(true));
+		return new OrderCollection($a);
 	}
 
 	/**
@@ -79,7 +79,7 @@ class OrderController extends Controller
 	 */
 	public function show(Order $order)
 	{
-		return response()->success((new OrderResource($order))->response()->getData(true));
+		return new OrderResource($order);
 	}
 
 	/**

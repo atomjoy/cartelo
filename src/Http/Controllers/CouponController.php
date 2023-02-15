@@ -44,7 +44,7 @@ class CouponController extends Controller
 			str_replace(" ", "|", $search)
 		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
 
-		return response()->success((new CouponCollection($a))->response()->getData(true));
+		return new CouponCollection($a);
 	}
 
 	/**
@@ -84,7 +84,7 @@ class CouponController extends Controller
 	 */
 	public function show(Coupon $coupon)
 	{
-		return response()->success((new CouponResource($coupon))->response()->getData(true));
+		return new CouponResource($coupon);
 	}
 
 	/**

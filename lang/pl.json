@@ -48,5 +48,6 @@
 	"The social has been deleted": "Usunięto link",
 	"The user has been created": "Utworzono użytkownika",
 	"The user has been updated": "Zaktualizowano użytkownika",
-	"The user has been deleted": "Usunięto użytkownika"
+	"The user has been deleted": "Usunięto użytkownika",
+	"Error key in db": "Niepoprawny klucz w bazie danych"
 }
