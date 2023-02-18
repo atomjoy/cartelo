@@ -25,6 +25,7 @@ class UpdateAreaRequest extends FormRequest
 		$area = $this->route('area');
 
 		return [
+			'restaurant_id' => 'sometimes|numeric',
 			'name' => [
 				'sometimes', 'min:5', 'max:100',
 				Rule::unique('areas')->where(function ($query) use ($area) {
@@ -32,7 +33,6 @@ class UpdateAreaRequest extends FormRequest
 				})->ignore($area)->whereNull('deleted_at'),
 			],
 			'about' => 'sometimes|max:255',
-			'polygon' => 'sometimes|json',
 			'cost' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
 			'min_order_cost' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
 			'free_from' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
@@ -40,6 +40,7 @@ class UpdateAreaRequest extends FormRequest
 			'time' => 'sometimes|numeric|gte:0',
 			'sorting' => 'sometimes|numeric',
 			'visible' => 'sometimes|boolean',
+			'polygon' => 'sometimes|json',
 		];
 	}
 
@@ -53,7 +54,9 @@ class UpdateAreaRequest extends FormRequest
 		$this->merge(
 			$this->stripTags(
 				collect(request()->json()->all())->only([
-					'polygon', 'name', 'about', 'min_order_cost', 'cost', 'on_free_from', 'free_from', 'time', 'visible', 'sorting'
+					'restaurant_id', 'name', 'about', 'polygon',
+					'cost', 'min_order_cost', 'on_free_from', 'free_from',
+					'time', 'visible', 'sorting'
 				])->toArray()
 			)
 		);

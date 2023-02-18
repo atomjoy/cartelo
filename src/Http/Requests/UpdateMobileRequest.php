@@ -25,7 +25,8 @@ class UpdateMobileRequest extends FormRequest
 		$mobile = $this->route('mobile');
 
 		return [
-			'mobile' => [
+			'restaurant_id' => 'sometimes|numeric',
+			'number' => [
 				'sometimes',
 				Rule::unique('mobiles')->where(function ($query) use ($mobile) {
 					return $query->where('restaurant_id', $mobile->restaurant_id);
@@ -33,6 +34,7 @@ class UpdateMobileRequest extends FormRequest
 			],
 			'prefix' => 'sometimes|max:10',
 			'name' => 'sometimes|max:50',
+			'sorting' => 'sometimes|boolean',
 			'visible' => 'sometimes|boolean',
 		];
 	}
@@ -47,7 +49,7 @@ class UpdateMobileRequest extends FormRequest
 		$this->merge(
 			$this->stripTags(
 				collect(request()->json()->all())->only([
-					'name', 'mobile', 'prefix', 'visible'
+					'restaurant_id', 'name', 'number', 'prefix', 'sorting', 'visible'
 				])->toArray()
 			)
 		);

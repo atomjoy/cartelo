@@ -35,8 +35,8 @@ class UpdateCouponRequest extends FormRequest
 			'discount' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
 			'max_order_percent' => 'sometimes|numeric|gte:0|lte:100',
 			'description' => 'sometimes|max:500',
-			'used_at' => 'sometimes|date_format:H:i:s',
-			'expired_at' => 'sometimes|date_format:H:i:s',
+			'used_at' => 'sometimes|date_format:Y-m-d H:i:s',
+			'expired_at' => 'sometimes|date_format:Y-m-d H:i:s',
 			'active' => 'sometimes|boolean',
 		];
 	}
@@ -51,6 +51,7 @@ class UpdateCouponRequest extends FormRequest
 		$this->merge(
 			$this->stripTags(
 				collect(request()->json()->all())->only([
+					'user_id',
 					'code', 'type', 'discount', 'max_order_percent',
 					'description', 'used_at', 'expired_at', 'active'
 				])->toArray()

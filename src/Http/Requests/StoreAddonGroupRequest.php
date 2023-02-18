@@ -33,10 +33,10 @@ class StoreAddonGroupRequest extends FormRequest
 				Rule::in(['S', 'M', 'L', 'XL', 'XXL', 'XXXL'])
 			],
 			'about' => 'sometimes|max:500',
-			'sorting' => 'sometimes|numeric',
-			'visible' => 'sometimes|boolean',
 			'multiple' => 'sometimes|boolean',
 			'required' => 'sometimes|boolean',
+			'sorting' => 'sometimes|numeric',
+			'visible' => 'sometimes|boolean',
 		];
 	}
 
@@ -50,7 +50,8 @@ class StoreAddonGroupRequest extends FormRequest
 		$this->merge(
 			$this->stripTags(
 				collect(request()->json()->all())->only([
-					'name', 'size', 'multiple', 'required', 'about', 'sorting', 'visible'
+					'name', 'size', 'about', 'multiple', 'required',
+					'sorting', 'visible'
 				])->toArray()
 			)
 		);

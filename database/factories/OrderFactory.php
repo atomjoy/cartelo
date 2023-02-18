@@ -34,7 +34,6 @@ class OrderFactory extends Factory
 			'invoice_street' => $this->faker->streetName(),
 			'invoice_zip' => '00-000',
 			'invoice_nip' => $this->faker->numerify('123#######'),
-
 		];
 	}
 }

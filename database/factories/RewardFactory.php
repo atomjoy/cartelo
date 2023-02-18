@@ -14,9 +14,10 @@ class RewardFactory extends Factory
 		return [
 			'user_id' => null,
 			'order_id' => null,
+			'type' => 'plus',
 			'points' => $this->faker->randomFloat(),
+			'description' => 'Plus points',
 			'expired_at' => now()->addDays(366),
-			'description' => 'Plus points'
 		];
 	}
 }

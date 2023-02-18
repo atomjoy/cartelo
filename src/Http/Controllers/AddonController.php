@@ -67,7 +67,7 @@ class AddonController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		Addon::withTrashed()->updateOrCreate([
+		Addon::updateOrCreate([
 			'name' => $v['name'],
 			'price' => $v['price']
 		], $v);

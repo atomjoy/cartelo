@@ -67,7 +67,7 @@ class AreaController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		Area::withTrashed()->updateOrCreate([
+		Area::updateOrCreate([
 			'restaurant_id' => $v['restaurant_id'],
 			'name' => $v['name']
 		], $v);
@@ -111,7 +111,6 @@ class AreaController extends Controller
 			$area->polygon = $v['polygon'];
 		}
 		unset($v['polygon']);
-		$v['deleted_at'] = NULL;
 		$area->fill($v);
 		$area->save();
 

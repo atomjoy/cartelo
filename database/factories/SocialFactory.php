@@ -15,6 +15,9 @@ class SocialFactory extends Factory
 			'restaurant_id' => null,
 			'name' => 'Social ' . uniqid(),
 			'link' => 'https://youtube.com',
+			'icon' => 'https://img.icons8.com/ios-glyphs/2x/link.png',
+			'sorting' => 0,
+			'visible' => 1,
 		];
 	}
 
@@ -24,6 +27,15 @@ class SocialFactory extends Factory
 		return $this->state(function (array $attributes) {
 			return [
 				'visible' => 0,
+			];
+		});
+	}
+
+	public function sorting(int $number)
+	{
+		return $this->state(function (array $attributes) use ($number) {
+			return [
+				'sorting' => $number,
 			];
 		});
 	}

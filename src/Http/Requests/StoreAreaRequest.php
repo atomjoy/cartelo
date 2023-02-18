@@ -32,7 +32,6 @@ class StoreAreaRequest extends FormRequest
 				})->whereNull('deleted_at')
 			],
 			'about' => 'required',
-			'polygon' => 'required|json',
 			'cost' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
 			'min_order_cost' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
 			'free_from' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
@@ -40,6 +39,7 @@ class StoreAreaRequest extends FormRequest
 			'time' => 'sometimes|numeric|gte:0',
 			'sorting' => 'sometimes|numeric',
 			'visible' => 'sometimes|boolean',
+			'polygon' => 'required|json',
 		];
 	}
 
@@ -53,7 +53,9 @@ class StoreAreaRequest extends FormRequest
 		$this->merge(
 			$this->stripTags(
 				collect(request()->json()->all())->only([
-					'restaurant_id', 'polygon', 'name', 'about', 'min_order_cost', 'cost', 'on_free_from', 'free_from', 'time', 'visible', 'sorting'
+					'restaurant_id', 'name', 'about', 'polygon',
+					'min_order_cost', 'cost', 'on_free_from', 'free_from',
+					'time', 'visible', 'sorting'
 				])->toArray()
 			)
 		);

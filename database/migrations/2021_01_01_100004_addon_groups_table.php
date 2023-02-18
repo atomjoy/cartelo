@@ -19,9 +19,9 @@ return new class extends Migration
 			$table->enum('size', ['S', 'M', 'L', "XL", "XXL", "XXXL"])->nullable()->default('S');
 			$table->unsignedTinyInteger('multiple')->nullable()->default(1);
 			$table->unsignedTinyInteger('required')->nullable()->default(0);
+			$table->string('about')->nullable()->default('');
 			$table->unsignedInteger('sorting')->nullable()->default(0);
 			$table->unsignedTinyInteger('visible')->nullable()->default(1);
-			$table->string('about')->nullable()->default('');
 			$table->timestamps();
 			$table->softDeletes();
 

@@ -33,9 +33,9 @@ class StoreCouponRequest extends FormRequest
 			'type' => ['required', Rule::in(['amount', 'percent'])],
 			'discount' => 'required|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
 			'max_order_percent' => 'required|numeric|gte:0|lte:100',
-			'expired_at' => 'require|date_format:Y-m-d H:i:s',
-			'used_at' => 'sometimes|date_format:Y-m-d H:i:s',
 			'description' => 'sometimes|max:500',
+			'expired_at' => 'required|nullable|date_format:Y-m-d H:i:s',
+			'used_at' => 'sometimes|nullable|date_format:Y-m-d H:i:s',
 			'active' => 'sometimes|boolean',
 		];
 	}

@@ -14,6 +14,27 @@ class AddonFactory extends Factory
 		return [
 			'name' => 'Addon ' . uniqid(),
 			'price' => $this->faker->randomFloat(2, 1, 3),
+			'sorting' => 0,
+			'visible' => 1,
 		];
+	}
+
+	// Indicate that the area is visible.
+	public function hidden()
+	{
+		return $this->state(function (array $attributes) {
+			return [
+				'visible' => 0,
+			];
+		});
+	}
+
+	public function sorting(int $number)
+	{
+		return $this->state(function (array $attributes) use ($number) {
+			return [
+				'sorting' => $number,
+			];
+		});
 	}
 }

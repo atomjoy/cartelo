@@ -67,7 +67,7 @@ class RestaurantController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		Restaurant::withTrashed()->updateOrCreate([
+		Restaurant::updateOrCreate([
 			'name' => $v['name']
 		], $v);
 

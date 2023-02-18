@@ -16,8 +16,8 @@ class CreateCouponTable extends Migration
 			$table->unsignedDecimal('discount', 15, 2)->default(0.00);
 			$table->unsignedTinyInteger('max_order_percent')->nullable()->default(50);
 			$table->unsignedTinyInteger('active')->nullable()->default(1);
-			$table->timestamp('used_at')->nullable(true);
 			$table->timestamp('expired_at')->nullable(true);
+			$table->timestamp('used_at')->nullable(true);
 			$table->timestamps();
 			$table->softDeletes();
 

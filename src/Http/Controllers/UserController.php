@@ -68,7 +68,7 @@ class UserController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		User::withTrashed()->updateOrCreate([
+		User::updateOrCreate([
 			'email' => $v['email'],
 			'name' => $v['name'],
 			'password' => Hash::make($v['password']),

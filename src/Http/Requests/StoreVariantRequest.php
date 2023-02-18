@@ -33,7 +33,7 @@ class StoreVariantRequest extends FormRequest
 			'price_sale' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
 			'packaging' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
 			'cashback' => 'sometimes|numeric|gte:0|regex:/^-?[0-9]+(?:.[0-9]{1,2})?$/',
-			'image' => 'sometimes|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
+			'image' => 'sometimes|image|mimes:png|max:2048',
 			'about' => 'sometimes|max:500',
 			'on_sale' => 'sometimes|boolean',
 			'sorting' => 'sometimes|numeric',
@@ -51,7 +51,9 @@ class StoreVariantRequest extends FormRequest
 		$this->merge(
 			$this->stripTags(
 				collect(request()->json()->all())->only([
-					'product_id', 'size', 'price', 'price_sale', 'packaging', 'cashback', 'on_sale', 'sorting', 'visible'
+					'product_id', 'size', 'price', 'price_sale',
+					'packaging', 'cashback', 'image', 'about',
+					'on_sale', 'sorting', 'visible'
 				])->toArray()
 			)
 		);

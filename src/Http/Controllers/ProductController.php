@@ -81,7 +81,7 @@ class ProductController extends Controller
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
 		$v['image'] = NULL;
-		$product = Product::withTrashed()->updateOrCreate([
+		$product = Product::updateOrCreate([
 			'name' => $v['name'],
 			'slug' => $v['slug'],
 		], $v);

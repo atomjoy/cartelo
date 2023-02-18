@@ -39,16 +39,15 @@ return new class extends Migration
 			$table->decimal('lng', 15, 6)->nullable()->default('0.000000'); // 11.1cm
 			$table->decimal('lat', 15, 6)->nullable()->default('0.000000'); // 11.1cm
 
-			$table->unsignedInteger('sorting')->nullable()->default(0);
-			$table->unsignedTinyInteger('visible')->nullable()->default(1);
-
-			// Fra
 			$table->string('invoice_company')->nullable(true);
 			$table->string('invoice_country')->nullable(true);
 			$table->string('invoice_city')->nullable(true);
 			$table->string('invoice_street')->nullable(true);
 			$table->string('invoice_zip')->nullable(true);
 			$table->string('invoice_nip')->nullable(true);
+
+			$table->unsignedInteger('sorting')->nullable()->default(0);
+			$table->unsignedTinyInteger('visible')->nullable()->default(1);
 
 			$table->timestamps();
 			$table->softDeletes();

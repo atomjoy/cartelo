@@ -23,8 +23,8 @@ return new class extends Migration
 			$table->unsignedTinyInteger('on_sale')->nullable()->default(0);
 			$table->unsignedInteger('sorting')->nullable()->default(0);
 			$table->unsignedTinyInteger('visible')->nullable()->default(1);
-			$table->string('image')->nullable()->default('');
-			$table->string('about')->nullable()->default('');
+			$table->string('image')->nullable(true);
+			$table->string('about')->nullable(true);
 			$table->timestamps();
 			$table->softDeletes();
 

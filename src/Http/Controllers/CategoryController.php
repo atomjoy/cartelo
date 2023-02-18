@@ -68,7 +68,7 @@ class CategoryController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		Category::withTrashed()->updateOrCreate([
+		Category::updateOrCreate([
 			'name' => $v['name'],
 			'slug' => $v['slug'],
 		], $v);

@@ -67,7 +67,7 @@ class DayController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		Day::withTrashed()->updateOrCreate([
+		Day::updateOrCreate([
 			'restaurant_id' => $v['restaurant_id'],
 			'number' => $v['number']
 		], $v);

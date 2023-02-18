@@ -67,8 +67,7 @@ class CouponController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		$v['used_at'] = NULL;
-		Coupon::withTrashed()->updateOrCreate([
+		Coupon::updateOrCreate([
 			'user_id' => $v['user_id'],
 			'code' => $v['code']
 		], $v);

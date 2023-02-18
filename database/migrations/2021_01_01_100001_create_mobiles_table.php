@@ -15,9 +15,9 @@ return new class extends Migration
 	{
 		Schema::create('mobiles', function (Blueprint $table) {
 			$table->id();
+			$table->string('name')->nullable()->default('Mobile');
 			$table->string('number', 50);
 			$table->string('prefix', 10)->nullable()->default('48');
-			$table->string('name')->nullable()->default('Mobile');
 			$table->unsignedInteger('sorting')->nullable()->default(0);
 			$table->unsignedTinyInteger('visible')->nullable()->default(1);
 			$table->timestamps();

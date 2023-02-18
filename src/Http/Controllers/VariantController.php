@@ -69,7 +69,7 @@ class VariantController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		Variant::withTrashed()->updateOrCreate([
+		Variant::updateOrCreate([
 			'product_id' => $v['product_id'],
 			'size' => $v['size']
 		], $v);

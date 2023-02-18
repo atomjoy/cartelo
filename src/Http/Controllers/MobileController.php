@@ -67,7 +67,7 @@ class MobileController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		Mobile::withTrashed()->updateOrCreate([
+		Mobile::updateOrCreate([
 			'restaurant_id' => $v['restaurant_id'],
 			'number' => $v['number'],
 		], $v);
@@ -107,7 +107,7 @@ class MobileController extends Controller
 	public function update(UpdateMobileRequest $request, Mobile $mobile)
 	{
 		$v = $request->validated();
-		$mobile->fill($v);
+		$mobile->forceFill($v);
 		$mobile->save();
 
 		return response()->success("The mobile has been updated");

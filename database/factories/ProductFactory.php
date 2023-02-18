@@ -19,9 +19,9 @@ class ProductFactory extends Factory
 			'slug' => Str::slug($name),
 			'image' => $this->faker->imageUrl(256, 256, 'food', true),
 			'about' => $this->faker->sentence(),
-			'visible' => 1,
 			'on_stock' => 1,
 			'sorting' => 0,
+			'visible' => 1,
 		];
 	}
 
@@ -34,11 +34,20 @@ class ProductFactory extends Factory
 		});
 	}
 
-	public function notVisible()
+	public function hidden()
 	{
 		return $this->state(function (array $attributes) {
 			return [
 				'visible' => 0,
+			];
+		});
+	}
+
+	public function sorting(int $number)
+	{
+		return $this->state(function (array $attributes) use ($number) {
+			return [
+				'sorting' => $number,
 			];
 		});
 	}

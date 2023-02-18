@@ -67,7 +67,7 @@ class SocialController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		Social::withTrashed()->updateOrCreate([
+		Social::updateOrCreate([
 			'restaurant_id' => $v['restaurant_id'],
 			'name' => $v['name']
 		], $v);

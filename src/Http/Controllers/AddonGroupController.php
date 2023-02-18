@@ -69,7 +69,7 @@ class AddonGroupController extends Controller
 	{
 		$v = $request->validated();
 		$v['deleted_at'] = NULL;
-		AddonGroup::withTrashed()->updateOrCreate([
+		AddonGroup::updateOrCreate([
 			'name' => $v['name'],
 			'size' => $v['size']
 		], $v);

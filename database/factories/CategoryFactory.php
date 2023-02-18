@@ -15,8 +15,9 @@ class CategoryFactory extends Factory
 		return [
 			'name' => 'Category ' . uniqid(),
 			'slug' => Str::slug('Category ' . uniqid()),
-			'about' => $this->faker->sentence(),
 			'image_url' => 'https://invalid.image.url/' . uniqid() . '.png',
+			'about' => $this->faker->sentence(),
+			'sorting' => 0,
 			'visible' => 1,
 		];
 	}
@@ -27,6 +28,15 @@ class CategoryFactory extends Factory
 		return $this->state(function (array $attributes) {
 			return [
 				'visible' => 0,
+			];
+		});
+	}
+
+	public function sorting(int $number)
+	{
+		return $this->state(function (array $attributes) use ($number) {
+			return [
+				'sorting' => $number,
 			];
 		});
 	}

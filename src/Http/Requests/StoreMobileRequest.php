@@ -22,7 +22,7 @@ class StoreMobileRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'restaurant_id' => 'required',
+			'restaurant_id' => 'required|numeric',
 			'number' => [
 				'required',
 				Rule::unique('mobiles')->where(function ($query) {
@@ -31,6 +31,7 @@ class StoreMobileRequest extends FormRequest
 			],
 			'prefix' => 'required|max:10',
 			'name' => 'required|max:50',
+			'sorting' => 'sometimes|boolean',
 			'visible' => 'sometimes|boolean',
 		];
 	}
@@ -45,7 +46,7 @@ class StoreMobileRequest extends FormRequest
 		$this->merge(
 			$this->stripTags(
 				collect(request()->json()->all())->only([
-					'restaurant_id', 'name', 'mobile', 'prefix', 'visible'
+					'restaurant_id', 'name', 'number', 'prefix', 'sorting', 'visible'
 				])->toArray()
 			)
 		);
