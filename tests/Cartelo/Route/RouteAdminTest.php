@@ -18,15 +18,18 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Tests\Cartelo\MigrateTestCase;
+use Illuminate\Support\Facades\Artisan;
+use Tests\TestCase;
 
-class RouteAdminTest extends MigrateTestCase
+class RouteAdminTest extends TestCase
 {
 	// use RefreshDatabase;
 
 	/** @test */
 	function seed_database()
 	{
+		Artisan::call('migrate:fresh');
+
 		$user = User::factory()->create(['role' => 'admin', 'username' => 'user1']);
 		// Restaurant
 		$this->create_restaurant($user);
@@ -138,17 +141,17 @@ class RouteAdminTest extends MigrateTestCase
 		$this->create_category_add_product($user, 4, 2);
 		$this->create_category_add_product($user, 4, 3);
 
-		print_r("\n  USER-ID: " . $user->id);
-		print_r("\n  RESTAURANT-ID: " . $restaurant->id);
-		print_r("\n  AREAS-ID: " . join(', ', $areas));
-		print_r("\n  MOBILES-ID: " . join(', ', $mobiles));
-		print_r("\n  SOCIALS-ID: " . join(', ', $socials));
-		print_r("\n  DAYS-ID: " . join(', ', $days));
-		print_r("\n  CATEGORIES-ID: " . join(', ', $categories));
-		print_r("\n  ADDONS-ID: " . join(', ', $addons));
-		print_r("\n  ADDONGROUPS-ID: " . join(', ', $addongroups));
-		print_r("\n  PRODUCTS-ID: " . join(', ', $products));
-		print_r("\n  VARIANTS-ID: " . join(', ', $variants));
+		// print_r("\n  USER-ID: " . $user->id);
+		// print_r("\n  RESTAURANT-ID: " . $restaurant->id);
+		// print_r("\n  AREAS-ID: " . join(', ', $areas));
+		// print_r("\n  MOBILES-ID: " . join(', ', $mobiles));
+		// print_r("\n  SOCIALS-ID: " . join(', ', $socials));
+		// print_r("\n  DAYS-ID: " . join(', ', $days));
+		// print_r("\n  CATEGORIES-ID: " . join(', ', $categories));
+		// print_r("\n  ADDONS-ID: " . join(', ', $addons));
+		// print_r("\n  ADDONGROUPS-ID: " . join(', ', $addongroups));
+		// print_r("\n  PRODUCTS-ID: " . join(', ', $products));
+		// print_r("\n  VARIANTS-ID: " . join(', ', $variants));
 	}
 
 	function create_restaurant($user)

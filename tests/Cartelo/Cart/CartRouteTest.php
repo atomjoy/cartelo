@@ -204,7 +204,7 @@ class CartRouteTest extends TestCase
 		$cart = Cart::first();
 		$area = Area::find(2);
 
-		print_r("\n Area cost: " . $area->cost);
+		// print_r("\n Area cost: " . $area->cost);
 
 		$this->assertTrue(Route::has('cartelo.cart.area.update'));
 		$res = $this->getJson('cartelo/carts/' . $cart->id . '/area/' . $area->id);
@@ -251,8 +251,8 @@ class CartRouteTest extends TestCase
 		$v = Variant::find(1);
 		$qty = 1;
 
-		print_r("\n Area: " . $cart->area->cost);
-		print_r("\n Variant: " . $v->price . "/" . $v->price_sale . "/" . $v->on_sale . "/" . $v->packaging);
+		// print_r("\n Area: " . $cart->area->cost);
+		// print_r("\n Variant: " . $v->price . "/" . $v->price_sale . "/" . $v->on_sale . "/" . $v->packaging);
 
 		// Clear
 		CartVariantAddon::query()->forceDelete();
