@@ -15,6 +15,8 @@ class ProductResource extends JsonResource
 	public function toArray($request)
 	{
 		$arr = parent::toArray($request);
+		$arr['name'] = trans_db($this->name);
+		$arr['about'] = trans_db($this->about);
 		$arr['variants'] = new VariantCollection($this->filter_variants);
 		$arr['categories'] = new CategoryCollection($this->categories);
 		return $arr;

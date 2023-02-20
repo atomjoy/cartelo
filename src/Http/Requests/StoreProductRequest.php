@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use Cartelo\Exceptions\ApiException;
+use Illuminate\Validation\ValidationException;
 use Cartelo\Traits\HasStripTags;
 
 class StoreProductRequest extends FormRequest
@@ -42,7 +42,9 @@ class StoreProductRequest extends FormRequest
 
 	public function failedValidation(Validator $validator)
 	{
-		throw new ApiException($validator->errors()->first(), 422);
+		throw new ValidationException($validator, response()->json([
+			'message' => $validator->errors()->first()
+		], 422));
 	}
 
 	function prepareForValidation()

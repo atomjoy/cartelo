@@ -13,6 +13,7 @@ use Cartelo\Http\Controllers\ProductController;
 use Cartelo\Http\Controllers\CouponController;
 use Cartelo\Http\Controllers\UserController;
 use Cartelo\Http\Controllers\VariantController;
+use Cartelo\Http\Controllers\TranslateController;
 use Illuminate\Support\Facades\Route;
 use Webi\Exceptions\WebiException;
 
@@ -49,6 +50,7 @@ Route::prefix('cartelo')->name('cartelo.')->middleware(['web', 'webi-locale', 'w
 	Route::resource('variants', VariantController::class)->only(['index', 'show']);
 	Route::resource('addons', AddonController::class)->only(['index', 'show']);
 	Route::resource('addongroups', AddonGroupController::class)->only(['index', 'show']);
+	Route::resource('translates', TranslateController::class)->only(['index', 'show']);
 
 	// Privates
 	Route::middleware(['auth', 'webi-role:admin|worker', 'webi-json'])->group(function () {
@@ -64,6 +66,7 @@ Route::prefix('cartelo')->name('cartelo.')->middleware(['web', 'webi-locale', 'w
 		Route::resource('categories', CategoryController::class)->except(['create', 'edit', 'index', 'show']);
 		Route::resource('products', ProductController::class)->except(['create', 'edit', 'index', 'show']);
 		Route::resource('variants', VariantController::class)->except(['create', 'edit', 'index', 'show']);
+		Route::resource('translates', TranslateController::class)->except(['create', 'edit', 'index', 'show']);
 
 		// Addon group pivots
 		Route::get('categories/{category}/attach/product/{product}', [CategoryController::class, 'attachProduct'])->name('categories.attach.product');

@@ -15,6 +15,8 @@ class AddonGroupResource extends JsonResource
 	public function toArray($request)
 	{
 		$arr = parent::toArray($request);
+		$arr['name'] = trans_db($this->name);
+		$arr['size'] = trans_db($this->size);
 		$arr['addons'] = $this->addons;
 		return $arr;
 	}

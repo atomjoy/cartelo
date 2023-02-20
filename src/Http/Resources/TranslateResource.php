@@ -4,10 +4,10 @@ namespace Cartelo\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AddonResource extends JsonResource
+class TranslateResource extends JsonResource
 {
-	// Change 'data to 'addon' in json response
-	// public static $wrap = 'addon';
+	// Change 'data to 'translate' in json response
+	// public static $wrap = 'translate';
 
 	/**
 	 * Transform the resource into an array.
@@ -17,8 +17,6 @@ class AddonResource extends JsonResource
 	 */
 	public function toArray($request)
 	{
-		$arr = parent::toArray($request);
-		$arr['name'] = trans_db($this->name);
-		return $arr;
+		return parent::toArray($request);
 	}
 }

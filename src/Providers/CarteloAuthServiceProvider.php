@@ -13,6 +13,7 @@ use Cartelo\Models\AddonGroup;
 use Cartelo\Models\Product;
 use Cartelo\Models\Variant;
 use Cartelo\Models\Order;
+use Cartelo\Models\Translate;
 
 use Cartelo\Policies\AreaPolicy;
 use Cartelo\Policies\CategoryPolicy;
@@ -25,6 +26,7 @@ use Cartelo\Policies\AddonGroupPolicy;
 use Cartelo\Policies\ProductPolicy;
 use Cartelo\Policies\VariantPolicy;
 use Cartelo\Policies\OrderPolicy;
+use Cartelo\Policies\TranslatePolicy;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -49,6 +51,7 @@ class CarteloAuthServiceProvider extends ServiceProvider
 		Product::class => ProductPolicy::class,
 		Variant::class => VariantPolicy::class,
 		Order::class => OrderPolicy::class,
+		Translate::class => TranslatePolicy::class,
 
 		// ::class => Policy::class,
 	];

@@ -15,6 +15,7 @@ class VariantResource extends JsonResource
 	public function toArray($request)
 	{
 		$arr = parent::toArray($request);
+		$arr['size'] = trans_db($this->size);
 		$arr['addongroups'] = new AddonGroupCollection($this->groups);
 		return $arr;
 	}
