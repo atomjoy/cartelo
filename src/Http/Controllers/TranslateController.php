@@ -37,14 +37,27 @@ class TranslateController extends Controller
 	public function index()
 	{
 		$search = "" . app()->request->input('search');
+		$key = "" . app()->request->input('key');
 
-		$a = Translate::where(
-			DB::raw("CONCAT_WS(' ',locale)"),
-			'regexp',
-			str_replace(" ", "|", $search)
-		)->orderBy("id", 'desc')->simplePaginate($this->perpage())->withQueryString();
+		$q = Translate::query();
 
-		return  new TranslateCollection($a);
+		if (!empty($search)) {
+			$q->where(
+				DB::raw("CONCAT_WS(' ',locale,value)"),
+				'regexp',
+				str_replace(" ", "|", $search)
+			);
+		}
+
+		if (!empty($key)) {
+			$q->where('key', $key);
+		}
+
+		$q->orderBy("id", 'desc');
+
+		$paginator = $q->simplePaginate($this->perpage())->withQueryString();
+
+		return  new TranslateCollection($paginator);
 	}
 
 	/**
