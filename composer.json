@@ -12,7 +12,7 @@
 	"minimum-stability": "dev",
 	"require": {
 		"php": "^8.1",
-		"atomjoy/webi": "^7.0",
+		"atomjoy/webi": "^8.0",
 		"atomjoy/payu": "^3.0",
 		"atomjoy/trans": "^1.0"
 	},

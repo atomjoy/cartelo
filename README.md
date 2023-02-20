@@ -77,6 +77,7 @@ php artisan migrate:fresh --seed --seeder=CarteloSeeder --env=testing
 ### Wersje językowe walidacji logowania (en, pl)
 
 ```sh
+php artisan lang:publish
 php artisan vendor:publish --tag=webi-lang-en
 php artisan vendor:publish --tag=webi-lang-pl
 ```
@@ -95,6 +96,9 @@ php artisan vendor:publish --tag=webi-lang-pl
   </testsuite>
   <testsuite name="CarteloModel">
       <directory suffix="Test.php">./vendor/atomjoy/cartelo/tests/Cartelo/Model</directory>
+  </testsuite>
+  <testsuite name="CarteloRes">
+      <directory suffix="Test.php">./vendor/atomjoy/cartelo/tests/Cartelo/Resource</directory>
   </testsuite>
   <testsuite name="Webi">
       <directory suffix="Test.php">./vendor/atomjoy/webi/tests</directory>
