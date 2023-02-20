@@ -17,10 +17,10 @@ return new class extends Migration
 			$table->id('id');
 
 			$table->unsignedBigInteger('category_id')->default(0)->index();
-			$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+			$table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
 
 			$table->unsignedBigInteger('product_id')->default(0)->index();
-			$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+			$table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
 
 			$table->timestamps();
 			$table->softDeletes();

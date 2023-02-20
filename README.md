@@ -118,6 +118,7 @@ php artisan test --stop-on-failure --testsuite=Payu
 php artisan test --stop-on-failure --testsuite=CarteloModel
 php artisan test --stop-on-failure --testsuite=CarteloRoute
 php artisan test --stop-on-failure --testsuite=CarteloCart
+php artisan test --stop-on-failure --testsuite=CarteloRes
 ```
 
 ## Błędy

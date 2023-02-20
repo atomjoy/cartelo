@@ -122,7 +122,7 @@ class CategoryController extends Controller
 	 */
 	public function destroy(Category $category)
 	{
-		$category->delete();
+		$category->forceDelete();
 
 		return response()->success("The category has been deleted");
 	}

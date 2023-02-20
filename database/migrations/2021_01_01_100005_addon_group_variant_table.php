@@ -17,10 +17,10 @@ return new class extends Migration
 			$table->id('id');
 
 			$table->unsignedBigInteger('variant_id')->default(0)->index();
-			$table->foreign('variant_id')->references('id')->on('variants')->onDelete('cascade');
+			$table->foreign('variant_id')->references('id')->on('variants')->onUpdate('cascade')->onDelete('cascade');
 
 			$table->unsignedBigInteger('addon_group_id')->default(0)->index();
-			$table->foreign('addon_group_id')->references('id')->on('addon_groups')->onDelete('cascade');
+			$table->foreign('addon_group_id')->references('id')->on('addon_groups')->onUpdate('cascade')->onDelete('cascade');
 
 			$table->timestamps();
 			$table->softDeletes();

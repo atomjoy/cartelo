@@ -123,7 +123,7 @@ class AddonGroupController extends Controller
 	 */
 	public function destroy(AddonGroup $addongroup)
 	{
-		$addongroup->delete();
+		$addongroup->forceDelete();
 
 		return response()->success("The addongroup has been deleted");
 	}

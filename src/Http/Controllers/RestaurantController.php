@@ -120,7 +120,7 @@ class RestaurantController extends Controller
 	 */
 	public function destroy(Restaurant $restaurant)
 	{
-		$restaurant->delete();
+		$restaurant->forceDelete();
 
 		return response()->success("The restaurant has been deleted");
 	}

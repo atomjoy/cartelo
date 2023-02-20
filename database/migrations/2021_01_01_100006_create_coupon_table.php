@@ -22,7 +22,7 @@ class CreateCouponTable extends Migration
 			$table->softDeletes();
 
 			$table->unsignedBigInteger('user_id')->nullable(true);
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 			$table->unique(['code', 'user_id']);
 		});
 	}

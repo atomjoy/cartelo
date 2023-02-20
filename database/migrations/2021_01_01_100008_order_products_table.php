@@ -28,8 +28,8 @@ return new class extends Migration
 
 			$table->unsignedBigInteger('order_id');
 			$table->unsignedBigInteger('variant_id')->nullable(true);
-			$table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-			$table->foreign('variant_id')->references('id')->on('variants')->onDelete('set null');
+			$table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('variant_id')->references('id')->on('variants')->onUpdate('cascade')->onDelete('set null');
 		});
 	}
 

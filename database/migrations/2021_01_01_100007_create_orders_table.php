@@ -59,12 +59,12 @@ return new class extends Migration
 			$table->unsignedBigInteger('worker_id')->nullable(true);
 			$table->unsignedBigInteger('coupon_id')->nullable(true);
 			// References
-			$table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+			$table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('set null');
 			$table->foreign('cart_id')->references('id')->on('carts')->onUpdate('cascade')->onDelete('set null');
-			$table->foreign('area_id')->references('id')->on('areas')->onDelete('set null');
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-			$table->foreign('worker_id')->references('id')->on('users')->onDelete('set null');
-			$table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('set null');
+			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
+			$table->foreign('area_id')->references('id')->on('areas')->onUpdate('cascade')->onDelete('set null');
+			$table->foreign('worker_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
+			$table->foreign('coupon_id')->references('id')->on('coupons')->onUpdate('cascade')->onDelete('set null');
 		});
 	}
 

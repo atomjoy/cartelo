@@ -121,7 +121,7 @@ class SocialController extends Controller
 	 */
 	public function destroy(Social $social)
 	{
-		$social->delete();
+		$social->forceDelete();
 
 		return response()->success("The social has been deleted");
 	}

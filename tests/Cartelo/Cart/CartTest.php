@@ -40,14 +40,16 @@ class CartTest extends TestCase
 			'code' => 'PROMO',
 			'type' => 'amount',
 			'discount' => 3.49,
-			'max_order_percent' => 50
+			'max_order_percent' => 50,
+			'used_at' => null
 		]);
 
 		$coupon2 = Coupon::factory()->create([
 			'code' => 'PROMOXXX',
 			'type' => 'percent',
 			'discount' => 30,
-			'max_order_percent' => 50
+			'max_order_percent' => 50,
+			'used_at' => null
 		]);
 
 		$a1 = Addon::factory()->create([

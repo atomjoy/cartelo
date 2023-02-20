@@ -121,7 +121,7 @@ class MobileController extends Controller
 	 */
 	public function destroy(Mobile $mobile)
 	{
-		$mobile->delete();
+		$mobile->forceDelete();
 
 		return response()->success("The mobile has been deleted");
 	}

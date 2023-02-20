@@ -121,7 +121,7 @@ class AddonController extends Controller
 	 */
 	public function destroy(Addon $addon)
 	{
-		$addon->delete();
+		$addon->forceDelete();
 
 		return response()->success("The addon has been deleted");
 	}

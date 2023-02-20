@@ -121,7 +121,7 @@ class DayController extends Controller
 	 */
 	public function destroy(Day $day)
 	{
-		$day->delete();
+		$day->forceDelete();
 
 		return response()->success("The day has been deleted");
 	}

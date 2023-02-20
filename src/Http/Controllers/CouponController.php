@@ -121,7 +121,7 @@ class CouponController extends Controller
 	 */
 	public function destroy(Coupon $coupon)
 	{
-		$coupon->delete();
+		$coupon->forceDelete();
 
 		return response()->success("The coupon has been deleted");
 	}

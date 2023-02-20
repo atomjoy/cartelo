@@ -123,7 +123,7 @@ class VariantController extends Controller
 	 */
 	public function destroy(Variant $variant)
 	{
-		$variant->delete();
+		$variant->forceDelete();
 
 		return response()->success("The variant has been deleted");
 	}

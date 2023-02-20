@@ -1,6 +1,6 @@
 {
 	"name": "atomjoy/cartelo",
-	"description": "Restaurant delivery library",
+	"description": "Restaurant delivery",
 	"type": "library",
 	"license": "MIT",
 	"authors": [
@@ -24,7 +24,11 @@
 			"Cartelo\\": "src/",
 			"Database\\Factories\\": "database/factories/",
 			"Database\\Migrations\\": "database/migrations/",
-			"Database\\Seeders\\": "database/seeders/",
+			"Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
 			"Tests\\": "tests/"
 		}
 	},

@@ -125,7 +125,7 @@ class AreaController extends Controller
 	 */
 	public function destroy(Area $area)
 	{
-		$area->delete();
+		$area->forceDelete();
 
 		return response()->success("The area has been deleted");
 	}

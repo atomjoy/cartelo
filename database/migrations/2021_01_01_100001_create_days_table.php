@@ -19,7 +19,7 @@ class CreateDaysTable extends Migration
 
 			$table->unsignedBigInteger('restaurant_id')->nullable(true);
 			$table->unique(['number', 'restaurant_id']);
-			$table->foreign('restaurant_id')->references('id')->on('restaurants')->onUpdate('cascade')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('restaurant_id')->references('id')->on('restaurants')->onUpdate('cascade')->onDelete('cascade');
 		});
 	}
 
