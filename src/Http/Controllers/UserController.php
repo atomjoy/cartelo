@@ -67,6 +67,7 @@ class UserController extends Controller
 	public function store(StoreUserRequest $request)
 	{
 		$v = $request->validated();
+		$v['email_verified_at'] = now();
 		$v['deleted_at'] = NULL;
 		User::updateOrCreate([
 			'email' => $v['email'],

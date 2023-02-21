@@ -39,7 +39,7 @@ class UpdateUserRequest extends FormRequest
 			'code' => 'sometimes|max:255',
 			'locale' => 'sometimes|max:255',
 			'newsletter_on' => 'sometimes|boolean',
-			'image' => 'sometimes|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
+			'image' => 'sometimes|image|mimes:png|max:2048',
 		];
 	}
 
@@ -56,7 +56,7 @@ class UpdateUserRequest extends FormRequest
 			$this->stripTags(
 				collect(request()->json()->all())->only([
 					'role', 'name', 'username', 'mobile_prefix', 'mobile',
-					'code', 'locale', 'website', 'location', 'image'
+					'code', 'locale', 'website', 'location', 'image', 'newsletter_on'
 				])->toArray()
 			)
 		);
