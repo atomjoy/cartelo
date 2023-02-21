@@ -54,7 +54,7 @@ class Order extends CarteloOrder
 }
 ```
 
-### Dodaj plik konfiguracji payu
+### Dodaj plik konfiguracji atomjoy/payu
 
 config/payu.php
 
@@ -65,64 +65,18 @@ php artisan vendor:publish --tag=payu-config
 ### Migracja tabel
 
 ```sh
+# Aktualizuj
+php artisan migrate
+
+# Nowe
 php artisan migrate:fresh
 php artisan migrate:fresh --env=testing
-
-# Options
-php artisan migrate:fresh --seed
-php artisan migrate:fresh --seed --seeder=CarteloSeeder
-php artisan migrate:fresh --seed --seeder=CarteloSeeder --env=testing
 ```
 
-### Wersje językowe walidacji logowania (en, pl)
+### Punkty końcowe interfejsu API
 
 ```sh
-php artisan lang:publish
-php artisan vendor:publish --tag=webi-lang-en
-php artisan vendor:publish --tag=webi-lang-pl
-```
-
-## Testy
-
-### Konfiguracja phpunit.xml
-
-```xml
-<testsuites>
-  <testsuite name="CarteloRoute">
-      <directory suffix="Test.php">./vendor/atomjoy/cartelo/tests/Cartelo/Route</directory>
-  </testsuite>
-  <testsuite name="CarteloCart">
-      <directory suffix="Test.php">./vendor/atomjoy/cartelo/tests/Cartelo/Cart</directory>
-  </testsuite>
-  <testsuite name="CarteloModel">
-      <directory suffix="Test.php">./vendor/atomjoy/cartelo/tests/Cartelo/Model</directory>
-  </testsuite>
-  <testsuite name="CarteloRes">
-      <directory suffix="Test.php">./vendor/atomjoy/cartelo/tests/Cartelo/Resource</directory>
-  </testsuite>
-  <testsuite name="Webi">
-      <directory suffix="Test.php">./vendor/atomjoy/webi/tests</directory>
-  </testsuite>
-  <testsuite name="Payu">
-    <directory suffix="Test.php">./vendor/atomjoy/payu/tests/Payu</directory>
-  </testsuite>
-</testsuites>
-
-<php>
-  <env name="APP_ENV" value="testing"/>
-  <env name="APP_DEBUG" value="false" force="true"/>
-</php>
-```
-
-## Sprawdzanie ustawień
-
-```sh
-php artisan test --stop-on-failure --testsuite=Webi
-php artisan test --stop-on-failure --testsuite=Payu
-php artisan test --stop-on-failure --testsuite=CarteloModel
-php artisan test --stop-on-failure --testsuite=CarteloRoute
-php artisan test --stop-on-failure --testsuite=CarteloCart
-php artisan test --stop-on-failure --testsuite=CarteloRes
+php artisan route:list
 ```
 
 ## Błędy
@@ -133,6 +87,24 @@ sudo chown -R www-data:www-data storage/framework/cache/payu
 sudo chmod -R 770 storage/framework/cache/payu
 ```
 
-## Route api
+### Dodaj w app/Exceptions/Handler.php dla tłumaczeń
 
-routes/web.php
+```php
+use Illuminate\Auth\AuthenticationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+public function register()
+{
+  $this->renderable(function (AuthenticationException $e, $request) {
+   if ($request->is('web/api/*') || $request->wantsJson()) {
+    return response()->errors($e->getMessage(), 401);
+   }
+  });
+
+  $this->renderable(function (NotFoundHttpException $e, $request) {
+   if ($request->is('web/api/*') || $request->wantsJson()) {
+    return response()->errors('Not Found.', 404);
+   }
+  });
+}
+```
